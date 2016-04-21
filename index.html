@@ -3,23 +3,35 @@
 <head>
     <meta charset="UTF-8" />
     <title>Registration Form</title>
+    <!-- LIBS -->
     <script src="libs/jquery-1.12.0.min.js"></script>
     <script src="libs/handlebars-v4.0.5.js"></script>
     <script src="libs/sammy-latest.min.js"></script>
-   <!-- <script src="src/templateCompilator.js"></script> -->
-    <script src="src/templateLoaderFunctions.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
     
-    <link rel="stylesheet" href="" />
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
 </head>
 <body>
     <h1>Registration Form</h1>
     
     <div id="template-output"></div>
-    <script src="src/sammyApp.js"></script>
+   
     
     <div id="navigation">
-    <input type="button" onClick="PreviousPage()" value="Back"/>
-    <input type="button" onClick="NextPage()" value="Next"/>  
+    <input id="previous" type="button" onClick="PreviousPage()" value="Back" class="btn btn-default"/>
+    <input id="next" type="button" onClick="NextPage()" value="Next" class="btn btn-default" />  
     </div>
+    
+    <!-- JS -->
+    <script src="src/dataHelper.js"></script>
+    <script src="src/validator.js"></script>
+    <script src="src/templateLoaderFunctions.js"></script>
+    <script src="src/sammyApp.js"></script>
+    
+    <script>
+        // OTHERWISE GENDER DOESN'T WORK
+    	
+    </script>
 </body>
 </html>
