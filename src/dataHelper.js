@@ -19,6 +19,6 @@ var dataHelper = {
     },
     loadRadio: function(selector, obj, propr) {
         $(selector+'[value='+obj[propr]+']').prop('checked', true);
-    },
+    }
     
 };

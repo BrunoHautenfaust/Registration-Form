@@ -8,31 +8,64 @@ var app = Sammy('#template-output', function() {
         });
     
         this.get('#/1', function() {
-            LoadTemplate('templates/page1.handlebars');}
-        );
+            Templating('templates/page1.handlebars', '#template-output');
+            //LoadTemplate('templates/page1.handlebars');
+        });
     
         this.get('#/2', function() {
-            LoadTemplate('templates/page2.handlebars');}
-        );
+            Templating('templates/page2.handlebars', '#template-output');
+            //LoadTemplate('templates/page2.handlebars');
+        });
     
         this.get('#/3', function() {
-            LoadTemplate('templates/page3.handlebars');}
-        );
+            Templating('templates/page3.handlebars', '#template-output');
+            //LoadTemplate('templates/page3.handlebars');
+        });
         
         this.get('#/4', function() {
-            LoadTemplate('templates/page4.handlebars');}
-        );
+            Templating('templates/page4.handlebars', '#template-output');
+            //LoadTemplate('templates/page4.handlebars');
+        });       
     
         this.get('#/5', function() {
-            LoadTemplate('templates/page5.handlebars');}
-        );
+            Templating('templates/page5.handlebars', '#template-output');
+           // LoadTemplate('templates/page5.handlebars');
+        });
+    
+        this.get('#/6', function() {
+           Templating('templates/page6.handlebars', '#template-output', details); //LoadTemplate('templates/page6.handlebars')
+        });
+        
+        this.bind('CheckPageEvent', function(e, data) {
+          var page = e.target.baseURI.slice(-1);
+            page = parseInt(page);
+            // previous
+            if (page === 1) {
+                $('#previous').hide();
+            } else {
+                $('#previous').show();
+            }
+            // next
+            if (page === 6) {
+                $('#next').hide();
+            } else {
+                $('#next').show();
+            }
+            
+            
+            // Checks:
+            // FindRequiredFields('#fname');
+            //  MakeRequired(IDs);
+           // CheckIfPageHasRequired();
+               
+        });
     
         this.bind('previousPageEvent', function(e, data) {
           var page = e.target.baseURI.slice(-1);
          // console.log(e.target.baseURI);
           page = +page;
          // console.log(typeof page + ' ' + page);
-        if (page > 1 && page <= 5) {
+        if (page > 1 && page <= 6) {
             page-=1;
         }
           this.redirect('#/'+page);
@@ -43,12 +76,13 @@ var app = Sammy('#template-output', function() {
          // console.log(e.target.baseURI);
           page = +page;
          // console.log(typeof page + ' ' + page);
-         if (page >= 1 && page < 5) {
+         if (page >= 1 && page < 6) {
             page+=1;
         }
            // console.log(typeof page + ' ' + page);
           this.redirect('#/'+page);
       });
+    
     
      
 });

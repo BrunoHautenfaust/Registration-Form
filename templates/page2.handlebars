@@ -1,7 +1,7 @@
+<!--
 <div>
----2:</br>
 <label>Birthdate <input type="date" id="birthdate" /></label></br> 
-City:
+<span>City:</span>
 <select name="select" id="city">
   <option selected></option> 
   <option value="Burgas">Burgas</option> 
@@ -12,3 +12,42 @@ City:
 </select></br>
 <label>Address: <input type="text" id="address" /></label></br>
 </div>
+-->
+<form>
+    
+  <div class="form-group row">
+    <label for="birthdate" class="col-sm-12 form-control-label">Дата на раждане <input type="date" id="birthdate" /></label>
+  </div>
+  
+    <div class="form-group row">
+        <span>Град</span>
+        <select name="select" id="city">
+          <option selected></option> 
+          <option value="Burgas">Бургас</option> 
+          <option value="Varna">Варна</option>
+          <option value="Sofia">София</option>
+          <option value="Plovdiv">Пловдив</option>
+          <option>Друг</option>
+        </select>
+    </div>
+    
+     <div class="form-group row">
+        <span>Образование</span>
+        <select name="select" id="education">
+          <option selected></option> 
+          <option value="elementary">Основно</option> 
+          <option value="secondary">Средно</option>
+          <option value="university">Висше</option>
+          <option value="other">Друго</option>
+        </select>
+    </div>
+    
+    <!--
+    <div class="form-group row">
+        <label for="address" class="col-sm-2 form-control-label">Адрес</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="address">
+        </div>
+    </div>
+    -->
+</form>
