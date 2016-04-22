@@ -1,3 +1,44 @@
+body {
+    transition:background-color 1s ease;
+    background:lightblue;
+}
+    /* Colors */
+    .lightblue {
+      background: lightblue;
+    }
+
+    .lightcoral {
+      background: lightcoral;
+    }
+
+    .lightsalmon {
+      background: lightsalmon;
+    }
+
+    .lightseagreen {
+      background: lightseagreen;
+    }
+
+    .lightsteelblue {
+      background: lightsteelblue;
+    }
+
+    .lightpink {
+      background: lightpink;
+    }
+
+    .beige {
+      background: beige;
+    }
+
+    .honeydew {
+      background: honeydew;
+    }
+
+    .lavender {
+      background: lavender;
+    }
+
 #template-output {
     width: 80%;
     height: 100%;

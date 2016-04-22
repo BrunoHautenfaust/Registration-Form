@@ -52,7 +52,6 @@ var app = Sammy('#template-output', function() {
                 $('#next').show();
             }
             
-            
             // Checks:
             // FindRequiredFields('#fname');
             //  MakeRequired(IDs);
@@ -90,13 +89,51 @@ var app = Sammy('#template-output', function() {
 app.run('#/1');
 
 function PreviousPage() {
-    app.trigger('previousPageEvent');
+    ColorPick('body', colors);
+    $('#template-output > *').animate({
+        marginLeft : "20%",
+        opacity: 0,
+      }, 250, function(){
+        app.trigger('previousPageEvent');
+    });
+    // app.trigger('previousPageEvent');
 }
 
 function NextPage() {
+     ColorPick('body', colors);
+    $('#template-output > *').animate({
+        marginRight : "20%",
+        opacity: 0,
+      }, 250, function(){
+        app.trigger('nextPageEvent');
+    });
+ 
+    /*
+    $('#template-output > *').promise().done(function(){
     app.trigger('nextPageEvent');
+  });*/
+  //  app.trigger('nextPageEvent');
 }
 // ===============
+
+var colors = ['lightblue', 'lightcoral', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightsteelblue', 'beige', 'honeydew', 'lavender'];
+
+function ColorPick(selector, arr) {
+    $(selector).removeClass();
+    var color = arr[Math.floor(Math.random()*arr.length)];
+   $(selector).addClass(color);
+   // console.log(color);
+}
+
+$( window ).swipeleft(function () {
+    NextPage();
+});
+ 
+$( window ).swiperight(function (event) {
+    PreviousPage();
+});
+  
+
 /*
 $("#template-output").on('click', function(){
     

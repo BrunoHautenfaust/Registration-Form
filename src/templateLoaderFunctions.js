@@ -4,16 +4,16 @@
 var details = {
     firstName: 'Aaaa',
     lastName: 'Bbbb',
-    gender: 'male',
+    gender: 'мъж',
     birthdate: '2016-05-13',
-    city: 'Sofia',
+    city: 'София',
     address: 'asdasdassa',
     username: null,
     password: null,
     phone: null,
     mail: null,
     site: null,
-    education: 'university',
+    education: 'Висше',
     languages: 'EN, FR',
     hobbies: 'jogging, sleeping'
 };
