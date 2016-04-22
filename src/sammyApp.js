@@ -56,6 +56,8 @@ var app = Sammy('#template-output', function() {
             // FindRequiredFields('#fname');
             //  MakeRequired(IDs);
            // CheckIfPageHasRequired();
+            
+          //  console.log(page);
                
         });
     
@@ -89,6 +91,7 @@ var app = Sammy('#template-output', function() {
 app.run('#/1');
 
 function PreviousPage() {
+   /*
     ColorPick('body', colors);
     $('#template-output > *').animate({
         marginLeft : "20%",
@@ -96,24 +99,40 @@ function PreviousPage() {
       }, 250, function(){
         app.trigger('previousPageEvent');
     });
-    // app.trigger('previousPageEvent');
+    */
+     var page = window.location.href.slice(-1);
+    if (page != 1) {
+      ColorPick('body', colors);
+    $('#template-output > *').animate({
+        marginLeft : "20%",
+        opacity: 0,
+      }, 250, function(){
+        app.trigger('previousPageEvent');
+    });
+    }
 }
 
 function NextPage() {
-     ColorPick('body', colors);
+     var page = window.location.href.slice(-1);
+    if (page != 6) {
+      //  console.log(page);
+         ColorPick('body', colors);
     $('#template-output > *').animate({
         marginRight : "20%",
         opacity: 0,
       }, 250, function(){
         app.trigger('nextPageEvent');
     });
+    }
+}
+    
  
     /*
     $('#template-output > *').promise().done(function(){
     app.trigger('nextPageEvent');
   });*/
   //  app.trigger('nextPageEvent');
-}
+
 // ===============
 
 var colors = ['lightblue', 'lightcoral', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightsteelblue', 'beige', 'honeydew', 'lavender'];
