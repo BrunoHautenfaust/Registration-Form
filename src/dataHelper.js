@@ -35,8 +35,8 @@ function SaveLoad() {
         /// 2
         dataHelper.loadText('#birthdate', details, 'birthdate');
         dataHelper.loadText('#city', details, 'city');
-        
-        dataHelper.loadText('#address', details, 'address');
+        dataHelper.loadText('#education', details, 'education');
+        //dataHelper.loadText('#address', details, 'address');
         /// 3
         dataHelper.loadText('#username', details, 'username');
         dataHelper.loadText('#password', details, 'password');
@@ -46,7 +46,7 @@ function SaveLoad() {
         dataHelper.loadText('#mail', details, 'mail');
         dataHelper.loadText('#site', details, 'site');
         /// 5
-        dataHelper.loadText('#education', details, 'education');
+        
         dataHelper.loadText('#langs', details, 'languages');
         dataHelper.loadText('#hobbies', details, 'hobbies');
        
@@ -57,8 +57,8 @@ function SaveLoad() {
         dataHelper.saveRadio('input:radio', 'name', 'gender', details, 'gender');
         /// 2
         dataHelper.saveEventChange('#birthdate', details ,'birthdate');
-        dataHelper.saveEventChange('#city', details, 'city');
-        dataHelper.saveText('#address', details, 'address');
+        dataHelper.saveEventChange('#city', details, 'city');        dataHelper.saveEventChange('#education', details ,'education');
+        /*dataHelper.saveText('#address', details, 'address');*/
         /// 3
         dataHelper.saveText('#username', details, 'username');
         dataHelper.saveText('#password', details, 'password');
@@ -67,7 +67,7 @@ function SaveLoad() {
         dataHelper.saveText('#mail', details, 'mail');
         dataHelper.saveText('#site', details, 'site');
         /// 5
-        dataHelper.saveEventChange('#education', details ,'education');
+        
         dataHelper.saveText('#langs', details, 'languages');
         dataHelper.saveText('#hobbies', details,'hobbies');    
 }

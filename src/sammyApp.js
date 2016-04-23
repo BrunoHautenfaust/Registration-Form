@@ -46,30 +46,51 @@ var app = Sammy('#template-output', function() {
             }
             
             // Checks:
-            
+            // Check if page has reqired and disable next
+            /*
+            if ($('#template-output').find('[required]').length > 0) {
+                $('#next').prop('disabled', true);
+            } else {
+                $('#next').prop('disabled', false);
+            }
+            */
+            /*
+            $(window).on('mouseover click', function() {
+                console.log('shit');
+                if ($('#template-output').find('[required]').length > 0) {
+                    $('#next').prop('disabled', true);
+                } else {
+                    $('#next').prop('disabled', false);
+                }
+            });
+            */
             // Find all 'required' and perform checks
             $('#template-output').find('[required]').each(function(){
+                
                 console.log("IR");
             // Attach focusout event
                    $(this).on('focusout', function(e){
-                        
+            // check input type           
                        if ( $(this).is(':text') && !$.trim($(this).val()).length ) {
                            var $message = $('<span>'+'Въведете текст в полето'+'</span>');
                            $(this).after($message);
                            $message.fadeOut(2000);
                        }
+                       
                        if ( $(this).is('input[type=date]') && $(this).context.value == '' ) {
                           // console.log($(this).context.value);
                            var $message = $('<span>'+'Изберете дата'+'</span>');
                            $(this).after($message);
                            $message.fadeOut(2000);
                        }
+                       
                        if ( $(this).is(':password') && !$.trim($(this).val()).length ) {
                           // console.log($(this).context.value);
                            var $message = $('<span>'+'Въведете парола'+'</span>');
                            $(this).after($message);
                            $message.fadeOut(2000);
                        }
+                       
                        if ( $(this).is('input[type=email]') && !isValidEmailAddress( $(this).val()) ) {
                           // console.log($(this).context.value);
                            var $message = $('<span>'+'Въведете валиден е-мейл адрес'+'</span>');
@@ -131,6 +152,7 @@ var app = Sammy('#template-output', function() {
 });
 
 app.run('#/1');
+ 
 
 function PreviousPage() {
      var page = window.location.href.slice(-1);
@@ -157,20 +179,43 @@ function NextPage() {
         });
     }
 }
-
-$( window ).swipeleft(function () {
+/*
+$( window ).swipeleft(function (event) {
     NextPage();
 });
  
 $( window ).swiperight(function (event) {
     PreviousPage();
 });
+*/
+$(window).on('swipeleft swiperight', function(event) {
+    if ( !$(event.target).is('input') ) {
+         if (event.type=='swipeleft') {
+             NextPage();
+         } else if (event.type=='swiperight') {
+             PreviousPage();
+         }
+    }
+});
   
+function Add(element, v) {
+    /*
+    if (element.value == v) {
+        var $input = $('<input type=text />')
+        var $message = $input;
+       // console.log(e.value);
+        $(element).after($message);
+        $(element).keyup(dataHelper.saveEventChange('#city', details, 'city'));
+    }*/
+   
+}
 
 function isValidEmailAddress(emailAddress) {
     var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
     return pattern.test(emailAddress);
 };
+
+
 
     /*
     $('#template-output > *').promise().done(function(){
