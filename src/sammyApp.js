@@ -1,7 +1,5 @@
-// initialize the application
 var app = Sammy('#template-output', function() {
     
-   // define a 'get' route that will be triggered at '#/'
         this.get('#/', function() {
           // this context is a Sammy.EventContext
           this.redirect('#/1');
@@ -9,31 +7,26 @@ var app = Sammy('#template-output', function() {
     
         this.get('#/1', function() {
             Templating('templates/page1.handlebars', '#template-output');
-            //LoadTemplate('templates/page1.handlebars');
         });
     
         this.get('#/2', function() {
             Templating('templates/page2.handlebars', '#template-output');
-            //LoadTemplate('templates/page2.handlebars');
         });
     
         this.get('#/3', function() {
             Templating('templates/page3.handlebars', '#template-output');
-            //LoadTemplate('templates/page3.handlebars');
         });
         
         this.get('#/4', function() {
             Templating('templates/page4.handlebars', '#template-output');
-            //LoadTemplate('templates/page4.handlebars');
         });       
     
         this.get('#/5', function() {
             Templating('templates/page5.handlebars', '#template-output');
-           // LoadTemplate('templates/page5.handlebars');
         });
     
         this.get('#/6', function() {
-           Templating('templates/page6.handlebars', '#template-output', details); //LoadTemplate('templates/page6.handlebars')
+           Templating('templates/page6.handlebars', '#template-output', details);
         });
         
         this.bind('CheckPageEvent', function(e, data) {
@@ -53,11 +46,64 @@ var app = Sammy('#template-output', function() {
             }
             
             // Checks:
-            // FindRequiredFields('#fname');
-            //  MakeRequired(IDs);
-           // CheckIfPageHasRequired();
             
-          //  console.log(page);
+            // Find all 'required' and perform checks
+            $('#template-output').find('[required]').each(function(){
+                console.log("IR");
+            // Attach focusout event
+                   $(this).on('focusout', function(e){
+                        
+                       if ( $(this).is(':text') && !$.trim($(this).val()).length ) {
+                           var $message = $('<span>'+'Въведете текст в полето'+'</span>');
+                           $(this).after($message);
+                           $message.fadeOut(2000);
+                       }
+                       if ( $(this).is('input[type=date]') && $(this).context.value == '' ) {
+                          // console.log($(this).context.value);
+                           var $message = $('<span>'+'Изберете дата'+'</span>');
+                           $(this).after($message);
+                           $message.fadeOut(2000);
+                       }
+                       if ( $(this).is(':password') && !$.trim($(this).val()).length ) {
+                          // console.log($(this).context.value);
+                           var $message = $('<span>'+'Въведете парола'+'</span>');
+                           $(this).after($message);
+                           $message.fadeOut(2000);
+                       }
+                       if ( $(this).is('input[type=email]') && !isValidEmailAddress( $(this).val()) ) {
+                          // console.log($(this).context.value);
+                           var $message = $('<span>'+'Въведете валиден е-мейл адрес'+'</span>');
+                           $(this).after($message);
+                           $message.fadeOut(2000);
+                       }
+                       
+                    
+                    });
+                    
+                    
+            });
+           // BACKUP
+            /*
+               $('#template-output').find('input').each(function(){
+                
+                if( $(this).prop('required') ){
+                   console.log("IR");
+            // Attach focusout event
+                   $(this).on('focusout', function(e){
+                    
+                       if ( $(this).is(':text') && !$.trim($(this).val()).length ) {
+                           var $message = $('<span>'+'Въведете минимум'+'</span>');
+                           $(this).after($message);
+                           $message.fadeOut(2000);
+                       }
+                       
+                    });
+                    
+                    
+                }
+            });
+            */
+            
                
         });
     
@@ -65,7 +111,6 @@ var app = Sammy('#template-output', function() {
           var page = e.target.baseURI.slice(-1);
          // console.log(e.target.baseURI);
           page = +page;
-         // console.log(typeof page + ' ' + page);
         if (page > 1 && page <= 6) {
             page-=1;
         }
@@ -76,14 +121,11 @@ var app = Sammy('#template-output', function() {
           var page = e.target.baseURI.slice(-1);
          // console.log(e.target.baseURI);
           page = +page;
-         // console.log(typeof page + ' ' + page);
          if (page >= 1 && page < 6) {
             page+=1;
         }
-           // console.log(typeof page + ' ' + page);
           this.redirect('#/'+page);
       });
-    
     
      
 });
@@ -91,57 +133,29 @@ var app = Sammy('#template-output', function() {
 app.run('#/1');
 
 function PreviousPage() {
-   /*
-    ColorPick('body', colors);
-    $('#template-output > *').animate({
-        marginLeft : "20%",
-        opacity: 0,
-      }, 250, function(){
-        app.trigger('previousPageEvent');
-    });
-    */
      var page = window.location.href.slice(-1);
     if (page != 1) {
-      ColorPick('body', colors);
-    $('#template-output > *').animate({
-        marginLeft : "20%",
-        opacity: 0,
-      }, 250, function(){
-        app.trigger('previousPageEvent');
-    });
+        ColorPick('body', colors);
+            $('#template-output > *').animate({
+            marginLeft : "20%",
+            opacity: 0,
+          }, 250, function(){
+            app.trigger('previousPageEvent');
+        });
     }
 }
 
 function NextPage() {
      var page = window.location.href.slice(-1);
     if (page != 6) {
-      //  console.log(page);
-         ColorPick('body', colors);
-    $('#template-output > *').animate({
-        marginRight : "20%",
-        opacity: 0,
-      }, 250, function(){
-        app.trigger('nextPageEvent');
-    });
+        ColorPick('body', colors);
+        $('#template-output > *').animate({
+            marginRight : "20%",
+            opacity: 0,
+            }, 250, function(){
+            app.trigger('nextPageEvent');
+        });
     }
-}
-    
- 
-    /*
-    $('#template-output > *').promise().done(function(){
-    app.trigger('nextPageEvent');
-  });*/
-  //  app.trigger('nextPageEvent');
-
-// ===============
-
-var colors = ['lightblue', 'lightcoral', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightsteelblue', 'beige', 'honeydew', 'lavender'];
-
-function ColorPick(selector, arr) {
-    $(selector).removeClass();
-    var color = arr[Math.floor(Math.random()*arr.length)];
-   $(selector).addClass(color);
-   // console.log(color);
 }
 
 $( window ).swipeleft(function () {
@@ -153,6 +167,50 @@ $( window ).swiperight(function (event) {
 });
   
 
+function isValidEmailAddress(emailAddress) {
+    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+    return pattern.test(emailAddress);
+};
+
+    /*
+    $('#template-output > *').promise().done(function(){
+    app.trigger('nextPageEvent');
+  });*/
+  //  app.trigger('nextPageEvent');
+
+//var selectors = ['#fname', '#lname'];
+
+/*
+function CheckSelectors() {
+   
+    $('#template-output').find('input').each(function(){
+    if( $(this).prop('required') ){
+       console.log("IR");
+        
+    }
+});
+    
+}
+*/
+ 
+/*
+function FocusOut() {
+    $("#template-output").on('click', function(){
+            // Karantia
+        
+        
+        $('input:text').on('focusout', function(e){
+            console.log('lost focus');
+        });
+        
+        $(selector).on('focusout', function(e){
+            console.log(1);
+            $(this).off();
+        })
+
+    });
+}
+;*/
 /*
 $("#template-output").on('click', function(){
     
