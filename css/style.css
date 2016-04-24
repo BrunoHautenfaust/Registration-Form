@@ -1,6 +1,6 @@
 body {
     transition:background-color 1s ease;
-    background: darkred;
+    background: teal;
      overflow: hidden;
 }
     /* Colors */
@@ -90,21 +90,6 @@ input[type="button"] {
 	height: 100px; 
     background: gainsboro;
     opacity: 0.5;
-}
-
-.rotateAnim {
-    transform: rotate(45deg) translateX(5px) rotate(-45deg);
-    animation: orbit2 15s linear infinite;
-}
-
-.rotateAnim2 {
-    transform: rotate(45deg) translateX(5px) rotate(-45deg);
-    animation: orbit2 5s linear infinite;
-}
-
-@keyframes orbit2 {
-	from { 	transform: rotate(0deg) translateX(5px) rotate(0deg); }
-	to   {  transform: rotate(360deg) translateX(5px) rotate(-360deg); }
 }
 
 .circle1 {
@@ -206,80 +191,17 @@ input[type="button"] {
     opacity: 0.3;
 }
 
-/*
-.circle1 {
-    position: inherit;
-    top: 550%;
-    left: 350%;
-    border-radius: 50%;
-	width: 80px;
-	height: 80px; 
-    background: gray;
-    opacity: 0.5;
+.rotateAnim {
+    transform: rotate(45deg) translateX(5px) rotate(-45deg);
+    animation: orbit2 15s linear infinite;
 }
 
-.circle2 {
-    position: inherit;
-    top: 350%;
-    left: 750%;
-    border-radius: 50%;
-	width: 30px;
-	height: 30px; 
-    background: gray;
-    opacity: 0.5;
+.rotateAnim2 {
+    transform: rotate(45deg) translateX(5px) rotate(-45deg);
+    animation: orbit2 5s linear infinite;
 }
 
-.circle3 {
-    position: inherit;
-    top: 100%;
-    left: 600%;
-    border-radius: 50%;
-	width: 100px;
-	height: 100px; 
-    background: gray;
-    opacity: 0.6;
+@keyframes orbit2 {
+	from { 	transform: rotate(0deg) translateX(5px) rotate(0deg); }
+	to   {  transform: rotate(360deg) translateX(5px) rotate(-360deg); }
 }
-
-.circle4 {
-    position: inherit;
-    top: 500%;
-    left: 100%;
-    border-radius: 50%;
-	width: 40px;
-	height: 40px; 
-    background: gray;
-    opacity: 0.9;
-}
-
-.circle5 {
-    position: inherit;
-    top: -200%;
-    left: 700%;
-    border-radius: 50%;
-	width: 300px;
-	height: 300px; 
-    background: gray;
-    opacity: 0.2;
-}
-
-.circle6 {
-    position: inherit;
-    top: 130%;
-    left: 120%;
-    border-radius: 50%;
-	width: 400px;
-	height: 400px; 
-    background: gray;
-    opacity: 0.2;
-}
-
-.circle7 {
-    position: inherit;
-    top: 300%;
-    left: 400%;
-    border-radius: 50%;
-	width: 450px;
-	height: 450px; 
-    background: gray;
-    opacity: 0.1;
-}*/
