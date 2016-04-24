@@ -72,28 +72,36 @@ var app = Sammy('#template-output', function() {
                    $(this).on('focusout', function(e){
             // check input type           
                        if ( $(this).is(':text') && !$.trim($(this).val()).length ) {
-                           var $message = $('<span>'+'Въведете текст в полето'+'</span>');
+                           var $message = $('<span class="label label-danger">'+'Въведете текст в полето'+'</span>').css({
+                               fontSize: 15,
+                           });
                            $(this).after($message);
                            $message.fadeOut(2000);
                        }
                        
                        if ( $(this).is('input[type=date]') && $(this).val() == '' ) {
                           // console.log($(this).context.value);
-                           var $message = $('<span>'+'Изберете дата'+'</span>');
+                           var $message = $('<span class="label label-danger">'+'Изберете дата'+'</span>').css({
+                               fontSize: 15,
+                           });
                            $(this).after($message);
                            $message.fadeOut(2000);
                        }
                        
                        if ( $(this).is(':password') && !$.trim($(this).val()).length ) {
                           // console.log($(this).context.value);
-                           var $message = $('<span>'+'Въведете парола'+'</span>');
+                           var $message = $('<span class="label label-danger">'+'Въведете парола'+'</span>').css({
+                               fontSize: 15,
+                           });
                            $(this).after($message);
                            $message.fadeOut(2000);
                        }
                        
                        if ( $(this).is('input[type=email]') && !isValidEmailAddress( $(this).val()) ) {
                           // console.log($(this).context.value);
-                           var $message = $('<span>'+'Въведете валиден е-мейл адрес'+'</span>');
+                           var $message = $('<span class="label label-danger">'+'Въведете валиден е-мейл адрес'+'</span>').css({
+                               fontSize: 15,
+                           });
                            $(this).after($message);
                            $message.fadeOut(2000);
                        }

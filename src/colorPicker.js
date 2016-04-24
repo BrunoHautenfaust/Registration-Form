@@ -1,8 +1,8 @@
-var colors = ['lightblue', 'lightcoral', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightsteelblue', 'beige', 'honeydew', 'lavender'];
+var colors = ['darkred', 'purple', 'teal', 'darkolivegreen', 'darkslategray', 'mediumvioletred', 'chocolate', 'darkgreen', 'darkcyan'];
 
 function ColorPick(selector, arr) {
     $(selector).removeClass();
     var color = arr[Math.floor(Math.random()*arr.length)];
    $(selector).addClass(color);
-   // console.log(color);
+    console.log(color);
 }
