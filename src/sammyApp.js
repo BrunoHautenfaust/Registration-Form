@@ -77,7 +77,7 @@ var app = Sammy('#template-output', function() {
                            $message.fadeOut(2000);
                        }
                        
-                       if ( $(this).is('input[type=date]') && $(this).context.value == '' ) {
+                       if ( $(this).is('input[type=date]') && $(this).val() == '' ) {
                           // console.log($(this).context.value);
                            var $message = $('<span>'+'Изберете дата'+'</span>');
                            $(this).after($message);
@@ -190,11 +190,15 @@ $( window ).swiperight(function (event) {
 */
 $(window).on('swipeleft swiperight', function(event) {
     if ( !$(event.target).is('input') ) {
-         if (event.type=='swipeleft') {
+        // Block if required
+        if ($('#template-output').find('[required]').length == 0) {
+            if (event.type=='swipeleft') {
              NextPage();
-         } else if (event.type=='swiperight') {
-             PreviousPage();
-         }
+            }
+        }
+        if (event.type=='swiperight') {
+            PreviousPage();
+        }
     }
 });
   
@@ -215,7 +219,45 @@ function isValidEmailAddress(emailAddress) {
     return pattern.test(emailAddress);
 };
 
-
+setInterval(function(){
+    // Enable/Disable NEXT if required
+    if ($('#template-output').find('[required]').length > 0) {
+        $('#next').prop('disabled', true);
+    } else {
+        $('#next').prop('disabled', false);
+    }
+    // Enable/Disable SWIPE if required
+    
+    // Add/Remove required
+    $('#template-output').find('input:text').each(function(){
+        if ( !$.trim($(this).val()).length ) {
+            $(this).prop('required', true);
+        } else {
+            $(this).prop('required', false);
+        }
+    });
+    
+    if ( $('#template-output').has('input[type=date]') && $('input[type=date]').val() == '' ) {
+         $('input[type=date]').prop('required', true);
+    } else if ( $('input[type=date]').val() != '' ) {
+         $('input[type=date]').prop('required', false);
+    }
+    
+    $('#template-output').find('input:password').each(function(){
+        if ( !$.trim($(this).val()).length ) {
+            $(this).prop('required', true);
+        } else {
+            $(this).prop('required', false);
+        }
+    });
+    
+    if ( $('#template-output').has('input[type=email]') && !isValidEmailAddress( $('input[type=email]').val()) ) {
+         $('input[type=email]').prop('required', true);
+    } else if ( isValidEmailAddress( $('input[type=email]').val()) ) {
+         $('input[type=email]').prop('required', false);
+    }
+    
+}, 500);
 
     /*
     $('#template-output > *').promise().done(function(){
