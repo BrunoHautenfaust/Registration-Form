@@ -12,7 +12,7 @@ var dataHelper = {
     saveEventChange: function(selector, obj, prop) {
         $(selector).change(function(){	
             obj[prop] = $(selector).val();
-            console.log(obj[prop]);
+           // console.log(obj[prop]);
 	    });
     },
     loadText: function(selector, obj, prop) {
@@ -23,7 +23,6 @@ var dataHelper = {
     }
     
 };
-
 
 function SaveLoad() {
     // PAGES DATA:
@@ -46,7 +45,6 @@ function SaveLoad() {
         dataHelper.loadText('#mail', details, 'mail');
         dataHelper.loadText('#site', details, 'site');
         /// 5
-        
         dataHelper.loadText('#langs', details, 'languages');
         dataHelper.loadText('#hobbies', details, 'hobbies');
        
@@ -67,7 +65,6 @@ function SaveLoad() {
         dataHelper.saveText('#mail', details, 'mail');
         dataHelper.saveText('#site', details, 'site');
         /// 5
-        
         dataHelper.saveText('#langs', details, 'languages');
         dataHelper.saveText('#hobbies', details,'hobbies');    
 }

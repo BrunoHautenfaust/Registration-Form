@@ -27,8 +27,6 @@
         <div class="circle8 rotateAnim2"></div>
     </div> 
     
-
-    
     <div class="container">
         <div class="row text-center">
             <h1>Регистрационна форма</h1>
@@ -39,21 +37,23 @@
         <div class="row text-center">
             <div id="navigation">
                 <div class="col-xs-6">
-                    <input id="previous" type="button" onClick="PreviousPage()" value="Назад" class="btn btn-default"/>
+                    <input id="previous" type="button" onClick="pageHelper.PreviousPage()" value="Назад" class="btn btn-default"/>
                 </div>
                 <div class="col-xs-6">
-                    <input id="next" type="button" onClick="NextPage()" value="Напред" class="btn btn-default" />  
+                    <input id="next" type="button" onClick="pageHelper.NextPage()" value="Напред" class="btn btn-default" />  
                 </div>
             </div>
         </div>
     </div>
 
     <!-- JS -->
-    <script src="src/validator.js"></script>
+    <script src="src/templates.js"></script>
     <script src="src/details.js"></script>
-    <script src="src/dataHelper.js"></script>
-    <script src="src/templateLoader.js"></script>
+    <script src="src/validator.js"></script>
     <script src="src/colorPicker.js"></script>
+    <script src="src/dataHelper.js"></script>
+    <script src="src/pageHelper.js"></script>
+    <script src="src/templateLoader.js"></script>
     <script src="src/sammyApp.js"></script>
 </body>
 </html>
