@@ -115,7 +115,7 @@ validator = (function(){
     }
     
     $('#template-output').find('input:password').each(function(){
-        if ( !$.trim($(this).val()).length ) {
+        if ( !$.trim($(this).val()).length || ( $(this).is('#repassword') && $('#password').val() != $('#repassword').val()) ) {
             $(this).prop('required', true);
         } else {
             $(this).prop('required', false);

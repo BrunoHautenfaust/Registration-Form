@@ -1,7 +1,7 @@
 var details = {
-    firstName: 'ASD',
-    lastName: 'ASD',
-    gender: 'мъж',
+    firstName: null,
+    lastName: null,
+    gender: null,
     birthdate: null,
     city: null,
     address: null,
