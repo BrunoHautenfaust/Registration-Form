@@ -43,7 +43,7 @@ body {
 }
 
 #navigation {
-    position: fixed;
+    position: static;
     top: 40%;
     left: 0;
     right: 0;
@@ -51,7 +51,7 @@ body {
 
 @media only screen and (max-width : 375px) {
     #navigation {
-        position: fixed;
+        position: static;
         top: 11%;
         left: 0;
         right: 10%;

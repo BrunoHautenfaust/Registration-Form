@@ -65,6 +65,14 @@ validator = (function(){
                            $message.fadeOut(2000);
                        }
                        
+                       if ( $(this).is('#repassword') && $('#password').val() != $('#repassword').val() ) {
+                           var $message = $('<span class="label label-danger">'+'Паролите в двете полета трябва да съвпадат'+'</span></br>').css({
+                               fontSize: 15,
+                           });
+                           $(this).after($message);
+                           $message.fadeOut(2000);
+                       }
+                       
                        if ( $(this).is('input[type=email]') && !isValidEmailAddress( $(this).val()) ) {
                           // console.log($(this).context.value);
                            var $message = $('<span class="label label-danger">'+'Въведете валиден е-мейл адрес'+'</span>').css({
@@ -92,7 +100,7 @@ validator = (function(){
     // Enable/Disable SWIPE if required
     
     // Add/Remove required
-    $('#template-output').find('input:text').each(function(){
+    $('#template-output').find('input:text:not(#langs, #hobbies)').each(function(){
         if ( !$.trim($(this).val()).length ) {
             $(this).prop('required', true);
         } else {

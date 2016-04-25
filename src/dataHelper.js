@@ -1,30 +1,5 @@
-var dataHelper = {
-    saveText: function(selector, obj, prop) {
-        $(selector).focusout(function() {
-        obj[prop] = $(selector).val();
-        }); 
-    },
-    saveRadio: function(selector, key, value, obj, prop) {
-        $(selector).click(function(){	
-        obj[prop] = $('input['+key+'='+value+']:checked').val();
-        });
-    },
-    saveEventChange: function(selector, obj, prop) {
-        $(selector).change(function(){	
-            obj[prop] = $(selector).val();
-           // console.log(obj[prop]);
-	    });
-    },
-    loadText: function(selector, obj, prop) {
-        $(selector).val(obj[prop]);
-    },
-    loadRadio: function(selector, obj, propr) {
-        $(selector+'[value='+obj[propr]+']').prop('checked', true);
-    }
-    
-};
-
-function SaveLoad() {
+var dataHelper = (function(){
+    function SaveLoad() {
     // PAGES DATA:
         // LOAD
         /// 1
@@ -67,4 +42,39 @@ function SaveLoad() {
         /// 5
         dataHelper.saveText('#langs', details, 'languages');
         dataHelper.saveText('#hobbies', details,'hobbies');    
-}
+    }
+    
+    function saveText(selector, obj, prop) {
+        $(selector).focusout(function() {
+        obj[prop] = $(selector).val();
+        }); 
+    }
+    function saveRadio(selector, key, value, obj, prop) {
+        $(selector).click(function(){	
+        obj[prop] = $('input['+key+'='+value+']:checked').val();
+        });
+    }
+    function saveEventChange(selector, obj, prop) {
+        $(selector).change(function(){	
+            obj[prop] = $(selector).val();
+           // console.log(obj[prop]);
+	    });
+    }
+    function loadText(selector, obj, prop) {
+        $(selector).val(obj[prop]);
+    }
+    function loadRadio(selector, obj, propr) {
+        $(selector+'[value='+obj[propr]+']').prop('checked', true);
+    }
+    
+    return {
+        saveText,
+        saveRadio,
+        saveEventChange,
+        loadText,
+        loadRadio,
+        SaveLoad
+    }
+    
+}());
+

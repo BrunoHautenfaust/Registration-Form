@@ -5,27 +5,27 @@ var app = Sammy('#template-output', function() {
         });
     
         this.get('#/1', function() {
-            GetTemplate('page1', '#template-output');
+            templateLoader.GetTemplate('page1', '#template-output');
         });
     
         this.get('#/2', function() {
-            GetTemplate('page2', '#template-output');
+            templateLoader.GetTemplate('page2', '#template-output');
         });
     
         this.get('#/3', function() {
-            GetTemplate('page3', '#template-output');
+            templateLoader.GetTemplate('page3', '#template-output');
         });
         
         this.get('#/4', function() {
-            GetTemplate('page4', '#template-output');
+            templateLoader.GetTemplate('page4', '#template-output');
         });       
     
         this.get('#/5', function() {
-            GetTemplate('page5', '#template-output');
+            templateLoader.GetTemplate('page5', '#template-output');
         });
     
         this.get('#/6', function() {
-           GetTemplate('page6', '#template-output', details);
+           templateLoader.GetTemplate('page6', '#template-output', details);
         });
         
         this.bind('CheckPageEvent', function(e, data) {
