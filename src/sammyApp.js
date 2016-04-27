@@ -30,6 +30,7 @@ var app = Sammy('#template-output', function() {
         
         this.bind('CheckPageEvent', function(e, data) {
           var page = e.target.baseURI.slice(-1);
+          viewport = document.querySelector("meta[name=viewport]");
             page = parseInt(page);
             // previous
             if (page === 1) {
@@ -40,13 +41,15 @@ var app = Sammy('#template-output', function() {
             // next
             if (page === 6) {
                 $('#next').hide();
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes');
             } else {
                 $('#next').show();
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
             }
            
             validator.validateFields();
             validator.CheckNextButtonAndRequired();
-               
+           
         });
     
         this.bind('previousPageEvent', function(e, data) {
