@@ -41,12 +41,16 @@ var app = Sammy('#template-output', function() {
             // next
             if (page === 6) {
                 $('#next').hide();
-                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes');
             } else {
                 $('#next').show();
-                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
             }
-           
+            // mobile viewport
+            if ( (page >=1 && page <= 5) && ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ) {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+            } else {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes');
+            }
+            
             validator.validateFields();
             validator.CheckNextButtonAndRequired();
            

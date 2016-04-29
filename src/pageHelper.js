@@ -43,9 +43,10 @@ pageHelper = (function(){
     });
     }
     
+    $('#previous').click(PreviousPage);
+    $('#next').click(NextPage);
+
     return {
-        PreviousPage,
-        NextPage,
         Swipe
     }
 
