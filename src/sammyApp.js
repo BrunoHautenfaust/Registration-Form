@@ -25,7 +25,7 @@ var app = Sammy('#template-output', function() {
         });
     
         this.get('#/6', function() {
-           MyRegForm.templateLoader.GetTemplate('page6', '#template-output', details);
+           MyRegForm.templateLoader.GetTemplate('page6', '#template-output', MyRegForm.details);
         });
         
         this.bind('CheckPageEvent', function(e, data) {

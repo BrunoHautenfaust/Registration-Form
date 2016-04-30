@@ -59,7 +59,7 @@ MyRegForm.validator = (function($){
                        //console.log(messageCanBeShown);
                        setTimeout(function(){
                            messageCanBeShown = true;
-                           console.log('activated again');
+                          // console.log('activated again');
                         }, 1400);
                     
                 } // end of if

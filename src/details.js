@@ -1,4 +1,4 @@
-var details = {
+MyRegForm.details = {
     firstName: null,
     lastName: null,
     gender: null,
