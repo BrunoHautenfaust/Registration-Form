@@ -1,23 +1,23 @@
-pageHelper = (function(){
+var pageHelper = (function($, cp){
      var colors = ['darkred', 'purple', 'teal', 'darkolivegreen', 'darkslategray', 'mediumvioletred', 'chocolate', 'darkgreen', 'darkcyan'];
     
     function PreviousPage() {
-     var page = window.location.href.slice(-1);
-    if (page != 1) {
-        colorPicker.ColorPick('body', colors);
-            $('#template-output > *').animate({
-            marginLeft : "20%",
-            opacity: 0,
-          }, 250, function(){
-            app.trigger('previousPageEvent');
-        });
+        var page = window.location.href.slice(-1);
+        if (page != 1) {
+            cp.PickColor('body', colors);
+                $('#template-output > *').animate({
+                marginLeft : "20%",
+                opacity: 0,
+              }, 250, function(){
+                app.trigger('previousPageEvent');
+            });
+        }
     }
-}
 
     function NextPage() {
-         var page = window.location.href.slice(-1);
+        var page = window.location.href.slice(-1);
         if (page != 6) {
-            colorPicker.ColorPick('body', colors);
+            cp.PickColor('body', colors);
             $('#template-output > *').animate({
                 marginRight : "20%",
                 opacity: 0,
@@ -50,4 +50,4 @@ pageHelper = (function(){
         Swipe
     }
 
-}());
+}(jQuery, colorPicker));

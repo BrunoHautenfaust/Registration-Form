@@ -1,4 +1,4 @@
-var dataHelper = (function(){
+var dataHelper = (function($){
     function SaveLoad() {
     // PAGES DATA:
         // LOAD
@@ -10,7 +10,6 @@ var dataHelper = (function(){
         dataHelper.loadText('#birthdate', details, 'birthdate');
         dataHelper.loadText('#city', details, 'city');
         dataHelper.loadText('#education', details, 'education');
-        //dataHelper.loadText('#address', details, 'address');
         /// 3
         dataHelper.loadText('#username', details, 'username');
         dataHelper.loadText('#password', details, 'password');
@@ -31,7 +30,6 @@ var dataHelper = (function(){
         /// 2
         dataHelper.saveEventChange('#birthdate', details ,'birthdate');
         dataHelper.saveEventChange('#city', details, 'city');        dataHelper.saveEventChange('#education', details ,'education');
-        /*dataHelper.saveText('#address', details, 'address');*/
         /// 3
         dataHelper.saveText('#username', details, 'username');
         dataHelper.saveText('#password', details, 'password');
@@ -76,5 +74,5 @@ var dataHelper = (function(){
         SaveLoad
     }
     
-}());
+}(jQuery));
 

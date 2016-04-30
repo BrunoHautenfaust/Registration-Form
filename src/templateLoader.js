@@ -1,4 +1,4 @@
-var templateLoader = (function(){
+var templateLoader = (function($, dh){
         function GetTemplate(source, selector, data) {
             if (!data) {
                 data = {};
@@ -7,10 +7,10 @@ var templateLoader = (function(){
             var output = compiledTemplate(data);
             $(selector).html(output);
             app.trigger('CheckPageEvent');
-        dataHelper.SaveLoad();
+            dh.SaveLoad();
         }
     
     return {
         GetTemplate        
     }
-    }());
+}(jQuery, dataHelper));

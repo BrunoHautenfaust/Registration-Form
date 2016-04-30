@@ -30,7 +30,7 @@ var app = Sammy('#template-output', function() {
         
         this.bind('CheckPageEvent', function(e, data) {
           var page = e.target.baseURI.slice(-1);
-          viewport = document.querySelector("meta[name=viewport]");
+          var viewport = document.querySelector("meta[name=viewport]");
             page = parseInt(page);
             // previous
             if (page === 1) {
