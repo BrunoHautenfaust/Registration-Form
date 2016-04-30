@@ -3,29 +3,29 @@ var app = Sammy('#template-output', function() {
         this.get('#/', function() {
           this.redirect('#/1');
         });
-    
+ // !    
         this.get('#/1', function() {
-            templateLoader.GetTemplate('page1', '#template-output');
+            MyRegForm.templateLoader.GetTemplate('page1', '#template-output');
         });
     
         this.get('#/2', function() {
-            templateLoader.GetTemplate('page2', '#template-output');
+            MyRegForm.templateLoader.GetTemplate('page2', '#template-output');
         });
     
         this.get('#/3', function() {
-            templateLoader.GetTemplate('page3', '#template-output');
+            MyRegForm.templateLoader.GetTemplate('page3', '#template-output');
         });
         
         this.get('#/4', function() {
-            templateLoader.GetTemplate('page4', '#template-output');
+            MyRegForm.templateLoader.GetTemplate('page4', '#template-output');
         });       
     
         this.get('#/5', function() {
-            templateLoader.GetTemplate('page5', '#template-output');
+            MyRegForm.templateLoader.GetTemplate('page5', '#template-output');
         });
     
         this.get('#/6', function() {
-           templateLoader.GetTemplate('page6', '#template-output', details);
+           MyRegForm.templateLoader.GetTemplate('page6', '#template-output', details);
         });
         
         this.bind('CheckPageEvent', function(e, data) {
@@ -50,9 +50,9 @@ var app = Sammy('#template-output', function() {
             } else {
                 viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes');
             }
-            
-            validator.validateFields();
-            validator.CheckNextButtonAndRequired();
+             // !
+            MyRegForm.validator.validateFields();
+            MyRegForm.validator.CheckNextButtonAndRequired();
            
         });
     
@@ -75,8 +75,8 @@ var app = Sammy('#template-output', function() {
         }
           this.redirect('#/'+page);
       });
-     
-    pageHelper.Swipe();
+     // !
+    MyRegForm.pageHelper.Swipe();
 });
 
 app.run('#/1');

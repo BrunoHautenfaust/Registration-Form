@@ -1,4 +1,4 @@
-var pageHelper = (function($, cp){
+MyRegForm.pageHelper = (function($, cp){
      var colors = ['darkred', 'purple', 'teal', 'darkolivegreen', 'darkslategray', 'mediumvioletred', 'chocolate', 'darkgreen', 'darkcyan'];
     
     function PreviousPage() {
@@ -10,6 +10,7 @@ var pageHelper = (function($, cp){
                 opacity: 0,
               }, 250, function(){
                 app.trigger('previousPageEvent');
+                app.trigger('CheckPageEvent');
             });
         }
     }
@@ -23,6 +24,7 @@ var pageHelper = (function($, cp){
                 opacity: 0,
                 }, 250, function(){
                 app.trigger('nextPageEvent');
+                app.trigger('CheckPageEvent');
             });
         }
     }
@@ -45,9 +47,9 @@ var pageHelper = (function($, cp){
     
     $('#previous').click(PreviousPage);
     $('#next').click(NextPage);
-
+    
     return {
         Swipe
     }
-
-}(jQuery, colorPicker));
+    
+}(jQuery, MyRegForm.colorPicker));

@@ -1,4 +1,4 @@
-var colorPicker = (function($){
+MyRegForm.colorPicker = (function($){
    
     function PickColor(selector, arr) {
        $(selector).removeClass();

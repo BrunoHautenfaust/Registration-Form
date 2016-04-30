@@ -1,4 +1,4 @@
-var templateLoader = (function($, dh){
+MyRegForm.templateLoader = (function($, dh){
         function GetTemplate(source, selector, data) {
             if (!data) {
                 data = {};
@@ -6,11 +6,11 @@ var templateLoader = (function($, dh){
             var compiledTemplate = Handlebars.templates[source];
             var output = compiledTemplate(data);
             $(selector).html(output);
-            app.trigger('CheckPageEvent');
+            app.trigger('CheckPageEvent'); // moved to pageHelper
             dh.SaveLoad();
         }
     
     return {
         GetTemplate        
     }
-}(jQuery, dataHelper));
+}(jQuery, MyRegForm.dataHelper));
