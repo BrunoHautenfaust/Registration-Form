@@ -1,4 +1,4 @@
-var app = Sammy('#template-output', function() {
+MyRegForm.app = Sammy('#template-output', function() {
     
         this.get('#/', function() {
           this.redirect('#/1');
@@ -79,4 +79,4 @@ var app = Sammy('#template-output', function() {
     MyRegForm.pageHelper.Swipe();
 });
 
-app.run('#/1');
+MyRegForm.app.run('#/1');

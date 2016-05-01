@@ -9,8 +9,8 @@ MyRegForm.pageHelper = (function($, cp){
                 marginLeft : "20%",
                 opacity: 0,
               }, 250, function(){
-                app.trigger('previousPageEvent');
-                app.trigger('CheckPageEvent');
+                MyRegForm.app.trigger('previousPageEvent');
+                MyRegForm.app.trigger('CheckPageEvent');
             });
         }
     }
@@ -23,8 +23,8 @@ MyRegForm.pageHelper = (function($, cp){
                 marginRight : "20%",
                 opacity: 0,
                 }, 250, function(){
-                app.trigger('nextPageEvent');
-                app.trigger('CheckPageEvent');
+                MyRegForm.app.trigger('nextPageEvent');
+                MyRegForm.app.trigger('CheckPageEvent');
             });
         }
     }
