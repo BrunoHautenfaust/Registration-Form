@@ -14,44 +14,65 @@ MyRegForm.validator = (function($){
                    messageCanBeShown = false;  
             // check input type           
                    if ( $(this).is(':text') && !$.trim($(this).val()).length ) {
-                        var $message = $('<span class="label label-danger">'+'Въведете текст в полето'+'</span>').css({
-                               fontSize: 15,
-                           });
+                        var $message = $('<span></span>', {
+                            class: 'label label-danger',
+                            text: 'Въведете текст в полето',
+                            css: {
+                                fontSize: 15
+                            }
+                        });
                            $(this).after($message);
                            $message.fadeOut(2000);
                    }
                        
                    if ( $(this).is('input[type=date]') && $(this).val() == '' ) {
                           // console.log($(this).context.value);
-                           var $message = $('<span class="label label-danger">'+'Изберете дата'+'</span>').css({
-                               fontSize: 15,
-                           });
+                           var $message = $('<span></span>', {
+                                class: 'label label-danger',
+                                text: 'Изберете дата',
+                                css: {
+                                    fontSize: 15
+                                }
+                            });
                            $(this).after($message);
                            $message.fadeOut(2000); 
                        }
                        
                        if ( $(this).is(':password') && !$.trim($(this).val()).length ) {
                           // console.log($(this).context.value);
-                           var $message = $('<span class="label label-danger">'+'Въведете парола'+'</span>').css({
-                               fontSize: 15,
-                           });
+                           var $message = $('<span></span>', {
+                                class: 'label label-danger',
+                                text: 'Въведете парола',
+                                css: {
+                                    fontSize: 15
+                                }
+                            });
                            $(this).after($message);
                            $message.fadeOut(2000);
                        }
                        
                        if ( $(this).is('#repassword') && $('#password').val() != $('#repassword').val() ) {
-                           var $message = $('<span class="label label-danger">'+'Паролите в двете полета трябва да съвпадат'+'</span></br>').css({
-                               fontSize: 15,
-                           });
+                           var $message = $('<span></span>', {
+                                class: 'label label-danger',
+                                text: 'Паролите в двете полета трябва да съвпадат ',
+                                css: {
+                                    fontSize: 15
+                                }
+                            });
+                           $message.append('</br>');
                            $(this).after($message);
                            $message.fadeOut(2000);
                        }
                        
                        if ( $(this).is('input[type=email]') && !isValidEmailAddress( $(this).val()) ) {
                           // console.log($(this).context.value);
-                           var $message = $('<span class="label label-danger">'+'Въведете валиден е-мейл адрес'+'</span>').css({
-                               fontSize: 15,
-                           });
+                           var $message = $('<span></span>', {
+                                class: 'label label-danger',
+                                text: 'Въведете валиден е-мейл адрес',
+                                css: {
+                                    fontSize: 15
+                                }
+                            });
                            $(this).after($message);
                            $message.fadeOut(2000);
                        }
