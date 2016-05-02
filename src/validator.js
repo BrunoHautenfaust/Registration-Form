@@ -1,9 +1,23 @@
 MyRegForm.validator = (function($){
-    function isValidEmailAddress(emailAddress) {
+    var messageCanBeShown = true;   
+    
+    function _isValidEmailAddress(emailAddress) {
         var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
         return pattern.test(emailAddress);
     }
-    var messageCanBeShown = true;   
+    
+    function _displayMessage(el, msg) {
+       var $message = $('<span></span>', {
+            class: 'label label-danger',
+            text: msg,
+            css: {
+                fontSize: 15
+            }
+        });
+       $message.append('</br>');
+       $(el).after($message);
+       $message.fadeOut(2000);
+    }
     
     function validateFields() {
         // Find all 'required' and perform checks
@@ -12,78 +26,32 @@ MyRegForm.validator = (function($){
            $(this).on('focusout', function(e){
                if (messageCanBeShown) {
                    messageCanBeShown = false;  
-            // check input type           
+                   var that = this;
+                  
                    if ( $(this).is(':text') && !$.trim($(this).val()).length ) {
-                        var $message = $('<span></span>', {
-                            class: 'label label-danger',
-                            text: 'Въведете текст в полето',
-                            css: {
-                                fontSize: 15
-                            }
-                        });
-                           $(this).after($message);
-                           $message.fadeOut(2000);
+                      _displayMessage(that, 'Въведете текст в полето ');
+                   }
+                     
+                   if ( $(this).is('input[type=date]') && $(this).val() == '' ) {
+                       _displayMessage(that, 'Изберете дата ');
                    }
                        
-                   if ( $(this).is('input[type=date]') && $(this).val() == '' ) {
-                          // console.log($(this).context.value);
-                           var $message = $('<span></span>', {
-                                class: 'label label-danger',
-                                text: 'Изберете дата',
-                                css: {
-                                    fontSize: 15
-                                }
-                            });
-                           $(this).after($message);
-                           $message.fadeOut(2000); 
-                       }
+                   if ( $(this).is(':password') && !$.trim($(this).val()).length ) {
+                       _displayMessage(that, 'Въведете парола ');
+                   }
                        
-                       if ( $(this).is(':password') && !$.trim($(this).val()).length ) {
-                          // console.log($(this).context.value);
-                           var $message = $('<span></span>', {
-                                class: 'label label-danger',
-                                text: 'Въведете парола',
-                                css: {
-                                    fontSize: 15
-                                }
-                            });
-                           $(this).after($message);
-                           $message.fadeOut(2000);
-                       }
+                   if ( $(this).is('#repassword') && $('#password').val() != $('#repassword').val() ) {
+                       _displayMessage(that, 'Паролите в двете полета трябва да съвпадат ');
+                   }
                        
-                       if ( $(this).is('#repassword') && $('#password').val() != $('#repassword').val() ) {
-                           var $message = $('<span></span>', {
-                                class: 'label label-danger',
-                                text: 'Паролите в двете полета трябва да съвпадат ',
-                                css: {
-                                    fontSize: 15
-                                }
-                            });
-                           $message.append('</br>');
-                           $(this).after($message);
-                           $message.fadeOut(2000);
-                       }
+                   if ( $(this).is('input[type=email]') && !_isValidEmailAddress( $(this).val()) ) {
+                       _displayMessage(that, 'Въведете валиден е-мейл адрес ');
+                   }
                        
-                       if ( $(this).is('input[type=email]') && !isValidEmailAddress( $(this).val()) ) {
-                          // console.log($(this).context.value);
-                           var $message = $('<span></span>', {
-                                class: 'label label-danger',
-                                text: 'Въведете валиден е-мейл адрес',
-                                css: {
-                                    fontSize: 15
-                                }
-                            });
-                           $(this).after($message);
-                           $message.fadeOut(2000);
-                       }
-                       
-                       //console.log(messageCanBeShown);
-                       setTimeout(function(){
-                           messageCanBeShown = true;
-                          // console.log('activated again');
-                        }, 1400);
-                    
-                } // end of if
+                   setTimeout(function(){
+                       messageCanBeShown = true;
+                   }, 1400);
+                }
                              
             });
         });
@@ -97,8 +65,7 @@ MyRegForm.validator = (function($){
             } else {
                 $('#next').prop('disabled', false);
             }
-            // Enable/Disable SWIPE if required
-    
+            
             // Add/Remove required
             $('#template-output').find('input:text:not(#langs, #hobbies)').each(function(){
                 if ( !$.trim($(this).val()).length ) {
@@ -108,9 +75,9 @@ MyRegForm.validator = (function($){
                 }
             });
 
-            if ( $('#template-output').has('input[type=date]') && $('input[type=date]').val() == '' ) {
+            if ($('input[type=date]').val() == '' ) {
                  $('input[type=date]').prop('required', true);
-            } else if ( $('input[type=date]').val() != '' ) {
+            } else {
                  $('input[type=date]').prop('required', false);
             }
 
@@ -122,9 +89,9 @@ MyRegForm.validator = (function($){
                 }
             });
 
-            if ( $('#template-output').has('input[type=email]') && !isValidEmailAddress( $('input[type=email]').val()) ) {
+            if ( !_isValidEmailAddress( $('input[type=email]').val()) ) {
                 $('input[type=email]').prop('required', true);
-            } else if ( isValidEmailAddress( $('input[type=email]').val()) ) {
+            } else {
                 $('input[type=email]').prop('required', false);
             }
     
